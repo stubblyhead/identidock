@@ -1,4 +1,4 @@
-FROM jenkins:2.60.3
+FROM jenkins/jenkins:2.178-jdk11
 USER root
 RUN echo "deb http://apt.dockerproject.org/repo debian-stretch main" \
           > /etc/apt/sources.list.d/docker.list \
@@ -10,7 +10,7 @@ RUN echo "deb http://apt.dockerproject.org/repo debian-stretch main" \
     && apt-get install -y docker-engine \
     && rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
-RUN curl -L https://github.com/docker/compoase/releases/download/1.4.1/\
+RUN curl -L https://github.com/docker/compose/releases/download/1.4.1/\
 docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; \
       chmod +x /usr/local/bin/docker-compose
 USER jenkins
